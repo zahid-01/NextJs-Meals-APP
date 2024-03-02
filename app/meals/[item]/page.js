@@ -5,6 +5,14 @@ import { getMeal } from "@/DB/meals";
 
 import classes from "./page.module.css";
 
+export const generateMetadata = ({ params }) => {
+  const meal = getMeal(params.item);
+  return {
+    title: meal ? meal.title : "Error",
+    description: meal ? meal.description : "ERROR",
+  };
+};
+
 const Item = ({ params }) => {
   const meal = getMeal(params.item);
   if (!meal) {
